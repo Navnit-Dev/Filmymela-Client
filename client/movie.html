@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Details - FilmyMela</title>
+    <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body class="netflix-theme">
+    <nav class="navbar">
+      <div class="nav-content">
+        <div class="nav-left">
+          <a style="display: flex;align-items: center;justify-content: center;gap: 2rem; text-decoration: none;" href="/">
+            <img class="logo-img" src="./assets/logo.png" alt="FilmyRain" />
+            <div class="logo">FilmyMela</div>
+          </a>
+        </div>
+        <div class="nav-links">
+          <a style="color: #fff; text-decoration: none" href="/">Home</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="movie-details">
+      <div class="movie-backdrop"></div>
+      <div class="movie-content">
+        <div class="movie-poster">
+          <img id="moviePoster" src="" alt="Movie Poster" />
+        </div>
+        <div class="movie-info">
+          <h1 id="movieTitle"></h1>
+          <div id="movieMeta" class="movie-meta">
+            <span id="movieYear"></span>
+            <span id="movieCategory" style="display: none"></span>
+            <span id="movieRating"></span>
+            <!-- <span id="movieIndustry"></span> -->
+
+            <!-- <div id="categoryGrid" class="category-grid"></div> -->
+          </div>
+          <p id="movieDescription"></p>
+          <div class="download-section">
+            <h3>Download Links</h3>
+            <div id="downloadLinks" class="download-buttons"></div>
+            <div style="margin-top: 0.4rem;" class="download-buttons">
+              <button  data-id="" id="WatchOnline" class="download-button">Watch Now</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="screenshots-section">
+        <h2>Screenshots</h2>
+        <div id="screenshotsGrid" class="screenshots-grid">
+          <!-- ScreenShots Added Here Dyanmically -->
+        </div>
+      </div>
+
+      <div id="screenshotModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img id="modalImage" src="" alt="Screenshot" />
+        <button class="modal-nav prev">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="modal-nav next">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <script src="./js/movie.js"></script>
+  </body>
+</html>
