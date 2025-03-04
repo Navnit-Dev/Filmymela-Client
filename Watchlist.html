@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your FilmyMela watchlist - Keep track of movies you want to watch">
+    <title>FilmyMela - Watchlist</title>
+
+    <!-- Favicon and PWA -->
+    <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="./assets/logo.png" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/Watchlist.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="nav-left">
+                <a href="./index.html">
+                    <img loading="lazy" class="logo-img" src="./assets/logo.png" alt="FilmyMela" />
+                    <div class="logo">FilmyMela</div>
+                </a>
+            </div>
+
+            <!-- Theme Toggle -->
+            <div class="theme-toggle-wrapper">
+                <input type="checkbox" id="theme-toggle" class="theme-toggle" />
+            </div>
+
+            <!-- Notification System -->
+            <div class="notification-bell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">0</span>
+            </div>
+            <div class="notification-panel">
+                <div class="notification-list"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="watchlist-container">
+        <!-- Search and Filter Section -->
+        <div class="watchlist-header">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="search" placeholder="Search in your watchlist...">
+            </div>
+            <div class="filter-options">
+                <select id="sortFilter" class="filter-select">
+                    <option value="dateAdded">Date Added</option>
+                    <option value="name">Name</option>
+                    <option value="rating">Rating</option>
+                </select>
+                <select id="genreFilter" class="filter-select">
+                    <option value="all">All Genres</option>
+                    <option value="action">Action</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="drama">Drama</option>
+                    <option value="horror">Horror</option>
+                    <option value="scifi">Sci-Fi</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Movies Grid -->
+        <div class="movie-grid" id="movie-list">
+            <!-- Empty State -->
+            <div class="empty-state" id="NoMovie">
+                <i class="fas fa-film empty-icon"></i>
+                <h2>Your Watchlist is Empty</h2>
+                <p>Start adding movies you want to watch later!</p>
+                <a href="./index.html" class="browse-btn">Browse Movies</a>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading-state" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading your watchlist...</p>
+        </div>
+    </main>
+
+    <!-- Mobile Footer -->
+    <footer class="mobile-footer">
+        <a href="./index.html" class="footer-btn">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="./Watchlist.html" class="footer-btn active">
+            <i class="fas fa-bookmark"></i>
+            <span>Watchlist</span>
+        </a>
+        <a href="./Profile.html" class="footer-btn">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </footer>
+
+    <!-- Remove Movie Confirmation Modal -->
+    <div class="modal" id="removeModal">
+        <div class="modal-content">
+            <h3>Remove from Watchlist?</h3>
+            <p>Are you sure you want to remove this movie from your watchlist?</p>
+            <div class="modal-actions">
+                <button id="cancelRemove" class="btn-secondary">Cancel</button>
+                <button id="confirmRemove" class="btn-danger">Remove</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="./js/utils.js" type="module"></script>
+    <script src="./js/Watchlist.js" type="module"></script>
+
+    <!-- PWA Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

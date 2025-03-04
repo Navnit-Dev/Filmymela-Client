@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Welcome to FilmyMela: Your ultimate destination for movie reviews, film news, and cinematic insights. Download the latest movies, stay updated with the world of films, and enjoy in-depth analysis, celebrity interviews, and exclusive content. Join our community of movie enthusiasts today!" />
+    <meta name="theme-color" content="#ff0000" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="./assets/logo.png" />
+
+    <title>FilmyMela - Download And Watch Latest Movies</title>
+    <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  </head>
+
+  <body>
+    <div id="loader" class="loader">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66 66" height="100px" width="100px" class="spinner">
+        <circle stroke="url(#gradient)" r="20" cy="33" cx="33" stroke-width="1" fill="transparent" class="path"></circle>
+        <linearGradient id="gradient">
+          <stop stop-opacity="1" stop-color="#fe0000" offset="0%"></stop>
+          <stop stop-opacity="0" stop-color="#af3dff" offset="100%"></stop>
+        </linearGradient>
+      </svg>
+      <h3 style="font-size: 3rem; color: red">FilmyMela</h3>
+    </div>
+
+    <section id="body">
+      <!-- Theme Toggle -->
+      <div class="theme-toggle-wrapper">
+        <input type="checkbox" id="theme-toggle" class="theme-toggle" />
+      </div>
+
+      <!-- Notification System -->
+      <div class="notification-bell">
+        <i class="fas fa-bell"></i>
+        <span class="notification-badge">0</span>
+      </div>
+      <div class="notification-panel">
+        <div class="notification-list"></div>
+      </div>
+
+      <nav class="navbar">
+        <div class="nav-content">
+          <div class="nav-left">
+            <a href="./index.html">
+              <img loading="lazy" class="logo-img" src="./assets/logo.png" alt="FilmyMela" />
+              <div class="logo">FilmyMela</div>
+            </a>
+          </div>
+
+          <div class="nav-center">
+            <a href="#" id="searchBtn"><i class="fas fa-search"></i></a>
+          </div>
+
+          <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <i class="fas fa-ellipsis-vertical"></i>
+          </button>
+          <div class="nav-links" id="navLinks">
+            <div class="industry-filters">
+              <button class="filter-btn active" data-industry="all">All</button>
+              <button class="filter-btn" data-industry="hollywood">Hollywood</button>
+              <button class="filter-btn" data-industry="bollywood">Bollywood</button>
+              <button class="filter-btn" data-industry="south">South-Indian</button>
+              <button class="filter-btn" data-industry="webseries">Web Series</button>
+            </div>
+            <div class="user-links">
+              <a href="./Watchlist.html" class="nav-link">
+                <i class="fas fa-bookmark"></i> Watchlist
+              </a>
+              <a href="./UserLogin.html" class="nav-link" id="loginLink">
+                <i class="fas fa-user"></i> Login
+              </a>
+              <a href="./Profile.html" class="nav-link" id="profileLink" style="display: none;">
+                <i class="fas fa-user-circle"></i> Profile
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="search-overlay">
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search movies..." />
+          <button id="closeSearch"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="SearchResult">
+          <div class="section-header">
+            <h2>Results</h2>
+          </div>
+          <div class="movies-grid" id="allResults">
+            <!-- Movies will be added here -->
+          </div>
+        </div>
+      </div>
+
+      <main class="main-content">
+        <section class="hero-section">
+          <div class="featured-movie">
+            <div class="featured-content">
+              <h1 style="font-size: 1.5rem;" id="featuredTitle">Loading...</h1>
+              <p id="featuredDescription">Loading...</p>
+              <div class="featured-meta" style="display: flex; align-items: center;flex-wrap: wrap;">
+                <span id="featuredYear"></span>
+                <div style="display: flex; align-items: center; gap: 5px" id="featuredCategories"></div>
+                <span id="featuredRating"></span>
+              </div>
+              <a href="#" id="featuredLink" class="featured-btn">
+                <i class="fas fa-info-circle"></i> More Info
+              </a>
+              <a href="#" id="featuredWatchlist" class="featured-btn">
+                <i class="fas fa-heart"></i> Add Watchlist
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="movies-section">
+          <div style="margin-bottom: 2rem;" class="mobilein">
+            <button class="filter-btn active" data-industry="action">Action</button>
+            <button class="filter-btn" data-industry="comedy">Comedy</button>
+            <button class="filter-btn" data-industry="thriller">Thriller</button>
+            <button class="filter-btn" data-industry="drama">Drama</button>
+            <button class="filter-btn" data-industry="romance">Romance</button>
+            <button class="filter-btn" data-industry="scifi">Sci-fi</button>
+            <button class="filter-btn" data-industry="horror">Horror</button>
+          </div>
+
+          <div>
+            <div class="section-header">
+              <h2>Trending Movies</h2>
+            </div>
+            <div class="movies-slider" id="latestMovies">
+              <!-- Movies will be added here -->
+            </div>
+          </div>
+
+          <div>
+            <div class="section-header">
+              <h2>All Movies</h2>
+            </div>
+            <div class="movies-grid" id="allMovies">
+              <!-- Movies will be added here -->
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="mobile-footer">
+        <a href="#" class="footer-btn" id="mobileSearchBtn">
+          <i class="fas fa-search"></i>
+          <span>Search</span>
+        </a>
+        <a href="./Watchlist.html" class="footer-btn">
+          <i class="fa-solid fa-bookmark"></i>
+          <span>Watchlist</span>
+        </a>
+        <a href="./UserLogin.html" class="footer-btn" id="mobileLoginBtn">
+          <i class="fas fa-user"></i>
+          <span>Login</span>
+        </a>
+        <a href="./Profile.html" class="footer-btn" id="mobileProfileBtn" style="display: none;">
+          <i class="fas fa-user-circle"></i>
+          <span>Profile</span>
+        </a>
+      </footer>
+    </section>
+
+    <!-- jQuery (Required for Toastr) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <!-- Main Scripts -->
+    <script type="module" src="./js/utils.js"></script>
+    <script type="module" src="./js/main.js"></script>
+    <script>
+      // Initialize PWA
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful');
+            })
+            .catch(err => {
+              console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+      }
+
+      // Initial page load animation
+      document.getElementById("body").style.display = "none";
+      setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("body").style.display = "block";
+        // Animate elements with GSAP
+        gsap.from(".nav-content", { duration: 1, y: -50, opacity: 0 });
+        gsap.from(".featured-content", { duration: 1, x: -100, opacity: 0, delay: 0.5 });
+        gsap.from(".movies-slider", { duration: 1, y: 50, opacity: 0, delay: 1 });
+      }, 1500);
+    </script>
+  </body>
+</html>

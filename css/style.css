@@ -1,0 +1,236 @@
+/* Dark Mode Styles */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --card-bg: #ffffff;
+    --border-color: #dee2e6;
+    --hover-color: #f8f9fa;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --card-bg: #2d2d2d;
+    --border-color: #404040;
+    --hover-color: #363636;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Theme Toggle */
+.theme-toggle-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.theme-toggle {
+    appearance: none;
+    width: 50px;
+    height: 25px;
+    background-color: var(--secondary-color);
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.theme-toggle::before {
+    content: '🌙';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 21px;
+    height: 21px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.theme-toggle:checked {
+    background-color: var(--primary-color);
+}
+
+.theme-toggle:checked::before {
+    transform: translateX(25px);
+    content: '☀️';
+}
+
+/* Notification System */
+.notification-bell {
+    position: fixed;
+    top: 20px;
+    right: 80px;
+    z-index: 1000;
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--text-color);
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-panel {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    width: 300px;
+    max-height: 400px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    z-index: 1000;
+    display: none;
+    overflow-y: auto;
+}
+
+.notification-panel.show {
+    display: block;
+}
+
+.notification-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.notification-item {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item.unread {
+    background-color: var(--hover-color);
+}
+
+.notification-item h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.notification-item p {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.notification-item small {
+    color: var(--secondary-color);
+    font-size: 12px;
+}
+
+/* Notification Popup */
+.notification-popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    z-index: 1001;
+    max-width: 300px;
+}
+
+.notification-popup h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.notification-popup p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+/* Card Styles */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Input Styles */
+input, textarea, select {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Button Styles */
+.btn {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Modal Styles */
+.modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+/* Table Styles */
+table {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+th, td {
+    border-color: var(--border-color);
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}

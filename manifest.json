@@ -1,0 +1,50 @@
+{
+  "name": "FilmyMela - Movie Streaming Platform",
+  "short_name": "FilmyMela",
+  "description": "Your ultimate destination for movie reviews, film news, and cinematic insights. Download and watch the latest movies.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#ff0000",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/assets/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Search Movies",
+      "short_name": "Search",
+      "description": "Search for movies",
+      "url": "/?action=search",
+      "icons": [{ "src": "/assets/logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "My Watchlist",
+      "short_name": "Watchlist",
+      "description": "View your watchlist",
+      "url": "/watchlist.html",
+      "icons": [{ "src": "/assets/logo.png", "sizes": "192x192" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "categories": ["entertainment", "movies"],
+  "screenshots": [],
+  "features": [
+    "Cross Platform",
+    "Real-time Updates",
+    "Offline Support",
+    "Push Notifications"
+  ]
+}

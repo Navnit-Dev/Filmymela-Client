@@ -1,0 +1,236 @@
+:root {
+    --primary-color: #e50914;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --text-color: #333333;
+    --input-bg: #ffffff;
+    --input-border: #dee2e6;
+    --input-focus: #007bff;
+    --error-color: #dc3545;
+    --success-color: #28a745;
+}
+
+.dark-mode {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --input-bg: #2d2d2d;
+    --input-border: #404040;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.login-nav {
+    padding: 1rem 2rem;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.logo-img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.form-box {
+    background-color: var(--input-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 12px;
+    color: var(--secondary-color);
+}
+
+.input-wrapper .toggle-password {
+    left: auto;
+    right: 12px;
+    cursor: pointer;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 40px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+button:hover {
+    background-color: #b2070f;
+}
+
+button:disabled {
+    background-color: var(--secondary-color);
+    cursor: not-allowed;
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+p {
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--text-color);
+}
+
+#toggle-btn {
+    color: var(--primary-color);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#toggle-btn:hover {
+    color: #b2070f;
+}
+
+/* Toast Customization */
+.toast-success {
+    background-color: var(--success-color) !important;
+}
+
+.toast-error {
+    background-color: var(--error-color) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .form-box {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .input-wrapper input {
+        padding: 10px 35px;
+        font-size: 0.9rem;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Animations */
+.input-wrapper input, button {
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.input-wrapper input:focus, button:hover {
+    transform: translateY(-2px);
+}
+
+/* Error State */
+.input-error {
+    border-color: var(--error-color) !important;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.input-error + .error-message {
+    display: block;
+}

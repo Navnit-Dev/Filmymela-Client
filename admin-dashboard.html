@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - FilmyMela</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="./css/AdminDashboard.css">
+    <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+  </head>
+  <body>
+    <!-- mainstart  -->
+    <div class="admin-header">
+      <h1>Admin Dashboard</h1>
+      <div>
+        <button onclick="openMovieModal()" class="action-btn edit-btn">
+          <i class="fa-solid fa-plus"></i> Add New Movie
+        </button>
+        <button onclick="logout()" class="action-btn delete-btn">Logout <i class="fa-solid fa-right-from-bracket"></i></button>
+
+        <button class="Profile-Btn"><i class="fa-solid fa-user action-btn delete-btn"></i></button>
+      </div>
+    </div>
+
+    <div class="admin-content">
+      <table>
+        <thead>
+          <tr>
+            <th></th>  <!-- New column for drag handle -->
+            <th>Sequence</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Category</th>
+            <th>Rating</th>
+            <th>Position</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="movieTableBody">
+          <!-- Movies will be loaded here -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Movie Modal -->
+    <div id="movieModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Add New Movie</h2>
+          <span class="close" onclick="closeMovieModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+          <form id="movieForm">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" id="title" name="title" required />
+            </div>
+            <div class="form-group">
+              <label for="year">Year</label>
+              <input type="number" id="year" name="year" required />
+            </div>
+
+            <!-- Category Selection Section -->
+            <div class="form-group">
+              <label>Categories</label>
+              <div id="categoryList" class="screenshot-list">
+                <div class="screenshot-item">
+                  <input
+                    type="text"
+                    name="categories[]"
+                    placeholder="Industry (eg:Bollywood,Hollywood)"
+                  />
+                </div>
+              </div>
+              <button
+                type="button"
+                class="add-more-btn"
+                onclick="addCategoryField()"
+              >
+                Add Categories
+              </button>
+            </div>
+
+            <div class="form-group">
+              <label for="rating">Rating</label>
+              <input
+                type="number"
+                id="rating"
+                name="rating"
+                step="0.1"
+                min="0"
+                max="10"
+              />
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea id="description" name="description" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="posterUrl">Poster URL</label>
+              <input type="url" id="posterUrl" name="posterUrl" required />
+            </div>
+
+            <div class="form-group">
+              <label for="WatchUrl">WatchOnline</label>
+              <input type="url" id="WatchUrl" name="WatchUrl" />
+            </div>
+
+            <!-- Screenshots Section -->
+            <div class="form-group">
+              <label>Screenshots</label>
+              <div id="screenshotsList" class="screenshot-list">
+                <div class="screenshot-item">
+                  <input
+                    type="url"
+                    name="screenshots[]"
+                    placeholder="Screenshot URL"
+                  />
+                </div>
+              </div>
+              <button
+                type="button"
+                class="add-more-btn"
+                onclick="addScreenshotField()"
+              >
+                Add Screenshot
+              </button>
+            </div>
+
+            <!-- Download Links Section -->
+            <div class="form-group">
+              <label>Download Links</label>
+              <div id="downloadLinksList" class="download-links-list">
+                <div class="download-link-item">
+                  <input
+                    type="text"
+                    name="qualities[]"
+                    placeholder="Quality (e.g., 1080p)"
+                  />
+                  <input
+                    type="url"
+                    name="downloadLinks[]"
+                    placeholder="Download Link"
+                  />
+                </div>
+              </div>
+              <button
+                type="button"
+                class="add-more-btn"
+                onclick="addDownloadLinkField()"
+              >
+                Add Download Link
+              </button>
+            </div>
+
+            <div class="form-group">
+              <label>Select Position</label>
+              <select id="dropdown" name="options" required>
+                <option value="" >Select Postion</option>
+                <option value="trending">Trending</option>
+                <option value="all">All</option>
+            </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="action-btn delete-btn"
+            onclick="closeMovieModal()"
+          >
+            Cancel
+          </button>
+          <button type="submit" form="movieForm" class="action-btn edit-btn">
+            Save Movie
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- mainend  -->
+
+    <!-- Profile Modal  -->
+
+    <!-- <div id="profileModal" class="profileModal">
+      <div class="P-modalContent">
+        <div class="modal-header">
+          <h2 id="ProfileTitle">Admin</h2>
+          <span class="close" onclick="closeProfileModal()">&times;</span>
+        </div>
+        <div class="ProfileModalBody">
+          <form  id="ProfileForm">
+            <div class="form-group">
+              <label for="Name">Name</label>
+              <input type="text" id="Name" name="Name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="Username">Username</label>
+              <input type="text" id="Username" name="Username" required />
+            </div>
+
+            <div class="form-group">
+              <label for="Password">Password</label>
+              <input type="password" id="Password" name="Password" required />
+            </div>
+
+            <div class="form-group ChangePassGroup">
+              <label for="title">Old Password</label>
+              <input type="password" id="title" name="title" required />
+              <label for="title">New Password</label>
+              <input type="password" id="title" name="title" required />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="submit" form="movieForm" class="action-btn edit-btn">
+            Update Profile
+          </button>
+
+          <button type="submit" form="movieForm" class="action-btn edit-btn">
+            Change Password
+          </button>
+          
+        </div>
+      </div>
+    </div> -->
+
+    <script src="./js/admin.js"></script>
+  </body>
+</html>
